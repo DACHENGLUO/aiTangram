@@ -22,7 +22,7 @@ public class Do {
 	}
 	
 	public void DFS() {
-		while(states[statesCount]!= currentTarget) {//not go to target state
+		while(!equal(states[statesCount],currentTarget,4,4)) {//not go to target state
 			if(putATangram()) {          //put a tangram with a new way.
 				//put a tangram success.
 			}
@@ -151,5 +151,18 @@ public class Do {
 		}
 		System.out.println();
 		System.out.println();
+	}
+	private boolean equal(int[][] a,int[][] b,int x,int y) {
+		boolean temp = true;
+		label1:
+		for(int i = 0;i<y;i++) {
+			for(int j=0;j<x;j++) {
+				if(a[i][j] != b[i][j]) {
+					temp = false;
+					break label1;
+				}
+			}
+		}
+		return temp;
 	}
 }
