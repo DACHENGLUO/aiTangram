@@ -3,11 +3,9 @@ import javax.swing.*;
 public class DrawTangrams {
 
 	public static void main(String[] args) {
-		/*Do do1 = new Do();
-		do1.DFS();*/
-		Data data1 = new Data();
-		Tangrams t = new Tangrams(data1.LT);
-		t.prointRotateContent();
+		Do do1 = new Do();
+		do1.DFS();
+		
 		JFrame frame = new JFrame("Drawing Tangrams");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Tangram tangrams = new Tangram();

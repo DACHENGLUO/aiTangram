@@ -7,9 +7,19 @@ public class Do {
 	private int Yshift[] = new int[7];
 	private int Xshift[] = new int[7];
 	private int[][] currentTarget = data1.target2;
-	private int[][] pieces = data1.LT;
+	private Tangrams[] tangrams = new Tangrams[7];
+
 	
 	private int statesCount=0;
+	public Do() {
+		tangrams[0] = new Tangrams(data1.LT);
+		tangrams[1] = new Tangrams(data1.LT);
+		tangrams[2] = new Tangrams(data1.MT);
+		tangrams[3] = new Tangrams(data1.ST);
+		tangrams[4] = new Tangrams(data1.ST);
+		tangrams[5] = new Tangrams(data1.SQ);
+		tangrams[6] = new Tangrams(data1.PA);
+	}
 	
 	public void DFS() {
 		while(states[statesCount]!= currentTarget) {//not go to target state
@@ -19,6 +29,7 @@ public class Do {
 			else {
 				
 				if((statesCount--)>0) {
+					
 					//take away a tangram(back to before state)
 				}
 				else {                  //take fail(no state can back)
@@ -26,25 +37,78 @@ public class Do {
 					break;
 				}
 			}
-			
+			printGraphics();
 		}
 	}
 	private boolean putATangram() {
 		boolean putsuccess =false;
+		
 		label1:
-		for(int i =0;i<=states[statesCount].length-pieces.length;i++) {
-			for(int j =0;j<=states[statesCount][0].length-pieces[0].length;j++) {
-				if(match(states[statesCount],pieces,j,i)) {
-					Yshift[statesCount]=i;
-					Xshift[statesCount]=j;
-					adder();
-					System.out.println("statesCount: "+statesCount);
-					printGraphics();
-					putsuccess = true;
-					break label1;
+			for(int i =0;i<=states[statesCount].length-tangrams[statesCount].rotateContent0.length;i++) {
+				for(int j =0;j<=states[statesCount][0].length-tangrams[statesCount].rotateContent0[0].length;j++) {
+					if(match(states[statesCount],tangrams[statesCount].rotateContent0,j,i)) {
+						Yshift[statesCount]=i;
+						Xshift[statesCount]=j;
+						adder(tangrams[statesCount].rotateContent0);
+						
+						putsuccess = true;
+						break label1;
+					}
+					
 				}
-				
 			}
+		
+		if(putsuccess ==false) {
+			label2:
+				for(int i =0;i<=states[statesCount].length-tangrams[statesCount].rotateContent1.length;i++) {
+					for(int j =0;j<=states[statesCount][0].length-tangrams[statesCount].rotateContent1[0].length;j++) {
+						if(match(states[statesCount],tangrams[statesCount].rotateContent1,j,i)) {
+							Yshift[statesCount]=i;
+							Xshift[statesCount]=j;
+							adder(tangrams[statesCount].rotateContent1);
+							System.out.println("statesCount: "+statesCount);
+							
+							putsuccess = true;
+							break label2;
+						}
+						
+					}
+				}
+		}
+		
+		if(putsuccess ==false) {
+		label3:
+			for(int i =0;i<=states[statesCount].length-tangrams[statesCount].rotateContent2.length;i++) {
+				for(int j =0;j<=states[statesCount][0].length-tangrams[statesCount].rotateContent2[0].length;j++) {
+					if(match(states[statesCount],tangrams[statesCount].rotateContent2,j,i)) {
+						Yshift[statesCount]=i;
+						Xshift[statesCount]=j;
+						adder(tangrams[statesCount].rotateContent2);
+						System.out.println("statesCount: "+statesCount);
+						
+						putsuccess = true;
+						break label3;
+					}
+					
+				}
+			}
+		}
+		if(putsuccess == false) {
+			label4:
+				for(int i =0;i<=states[statesCount].length-tangrams[statesCount].rotateContent3.length;i++) {
+					for(int j =0;j<=states[statesCount][0].length-tangrams[statesCount].rotateContent3[0].length;j++) {
+						if(match(states[statesCount],tangrams[statesCount].rotateContent3,j,i)) {
+							Yshift[statesCount]=i;
+							Xshift[statesCount]=j;
+							adder(tangrams[statesCount].rotateContent3);
+							System.out.println("statesCount: "+statesCount);
+						
+							putsuccess = true;
+							break label4;
+						}
+						
+					}
+				}
 		}
 		return putsuccess;
 		
@@ -67,7 +131,7 @@ public class Do {
 		if(i==27&&(j==13||j==14||j==0)) return true;
 		return false;
 	}
-	private void adder() {
+	private void adder(int[][] pieces) {
 		states[statesCount+1] = states[statesCount];
 		for(int i =0;i<pieces.length;i++) {
 			for(int j =0;j<pieces[0].length;j++) {
@@ -78,6 +142,7 @@ public class Do {
 	}
 	
 	private void printGraphics() {
+		System.out.println("statesCount: "+statesCount);
 		for(int i =0;i<states[statesCount].length;i++) {
 			for(int j =0;j<states[statesCount][0].length;j++) {
 				System.out.print(states[statesCount][i][j]+" ");

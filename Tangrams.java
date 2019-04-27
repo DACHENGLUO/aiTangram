@@ -2,13 +2,13 @@ package tangram;
 
 public class Tangrams {
 
-	private int locationX;
-	private int locationY;
-	private int[][] rotateContent0;
-	private int[][] rotateContent1;
-	private int[][] rotateContent2;
-	private int[][] rotateContent3;
-	private int rotateDegree;
+	public int locationX;
+	public int locationY;
+	public int[][] rotateContent0;
+	public int[][] rotateContent1;
+	public int[][] rotateContent2;
+	public int[][] rotateContent3;
+	public int rotateDegree;
 	public Tangrams(int[][] rotateContent0) {
 		this.locationX = 0;
 		this.locationY = 0;
