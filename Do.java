@@ -22,6 +22,13 @@ public class Do {
 		tangrams[5] = new Tangrams(data1.SQ);
 		tangrams[6] = new Tangrams(data1.PA);
 		
+		tangrams[0].shape = 1;
+		tangrams[1].shape = 1;
+		tangrams[2].shape = 2;
+		tangrams[3].shape = 3;
+		tangrams[4].shape = 3;
+		tangrams[5].shape = 4;
+		tangrams[6].shape = 5;
 	}
 	public void DFSAllGraphices(int targetNumber) {
 		int tempX = data1.sizeX[targetNumber];

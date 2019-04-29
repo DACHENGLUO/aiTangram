@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Tangrams {
 
+	public List<Integer> pointX = new ArrayList<>();
+	public List<Integer> pointY = new ArrayList<>();
+	public int shape; 
 	public int locationX;
 	public int locationY;
 	public List<int[][]> rotateContent;
@@ -100,6 +103,46 @@ public class Tangrams {
 		rotateContent.add(rotateContent3);
 	}
 	
+	public void setXY() {
+		if(shape == 1&&rotateDegree == 0) {
+			pointX.add(locationX*50 + 50);
+			pointX.add(locationX*50 + 150);
+			pointX.add(locationX*50 + 250);
+			pointY.add(locationY*50 + 150);
+			pointY.add(locationY*50 + 50);
+			pointY.add(locationY*50 + 150);
+		}
+		else if(shape == 1&&rotateDegree == 1) {
+			pointX.add(locationX*50 + 50);
+			pointX.add(locationX*50 + 50);
+			pointX.add(locationX*50 + 150);
+			pointY.add(locationY*50 + 50);
+			pointY.add(locationY*50 + 250);
+			pointY.add(locationY*50 + 150);
+		}
+		else if(shape == 1&&rotateDegree == 2) {
+			pointX.add(locationX*50 + 50);
+			pointX.add(locationX*50 + 150);
+			pointX.add(locationX*50 + 250);
+			pointY.add(locationY*50 + 50);
+			pointY.add(locationY*50 + 150);
+			pointY.add(locationY*50 + 250);
+		}
+		else if(shape == 1&&rotateDegree == 3) {
+			pointX.add(locationX*50 + 50);
+			pointX.add(locationX*50 + 150);
+			pointX.add(locationX*50 + 150);
+			pointY.add(locationY*50 + 150);
+			pointY.add(locationY*50 + 50);
+			pointY.add(locationY*50 + 250);
+		}
+		else if(shape == 1&&rotateDegree == 0) {
+			//....
+		}
+		else {
+			//error
+		}
+	}
 	
 
 }

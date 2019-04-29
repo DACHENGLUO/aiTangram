@@ -13,8 +13,10 @@ public class Tangram extends JPanel{
 		demos[0].addPoint(100, 100);
 		demos[0].addPoint(100, 200);
 		demos[0].addPoint(200, 200);
+	    demos[0].translate(40,0);
 		g.fillPolygon(demos[0]);
 		
+		g.setColor(Color.RED);
 		g.drawString("12", 230, 80);
 		demos[1]= new Polygon();
 		demos[1].addPoint(250, 100);

@@ -1,66 +1,40 @@
 package tangram;
+import java.awt.*;
+import javax.swing.*;
 
+public class Unit extends JPanel{
+	private Polygon[] demos = new Polygon[6];
 
-
-public class Unit {
-	private int type;
-	private boolean blank = true;
-	private int[] xPoints;
-	private int[] yPoints;
-	private int locationX;
-	private int locationY;
-	public void setBlank(boolean blank) {
-		this.blank = blank;
-	}
-	public void setType(int type) {
-		this.type = type;
-	}
-	public void  setLocation(int locationX,int locationY) {
-		this.locationX = locationX;
-		this.locationY = locationY;
-	}
-	public void setXYPoints() {
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		
-		if(type == 1) {
-			xPoints[0] = locationX*20;
-			xPoints[1] = (locationX+1)*20;
-			xPoints[2] = locationX*20;
-			yPoints[0] = locationY*20;
-			yPoints[1] = locationY*20;
-			yPoints[2] = (locationY+1)*20;
-		}
-		else if(type == 2) {
-			xPoints[0] = locationX*20;
-			xPoints[1] = (locationX+1)*20;
-			xPoints[2] = locationX*20;
-			yPoints[0] = locationY*20;
-			yPoints[1] = (locationY+1)*20;
-			yPoints[2] = (locationY+1)*20;
-		}
-		else if(type == 3) {
-			xPoints[0] = locationX*20;
-			xPoints[1] = (locationX-1)*20;
-			xPoints[2] = locationX*20;
-			yPoints[0] = locationY*20;
-			yPoints[1] = (locationY+1)*20;
-			yPoints[2] = (locationY+1)*20;
-		}
-		else if(type == 4) {
-			xPoints[0] = (locationX-1)*20;
-			xPoints[1] = locationX*20;
-			xPoints[2] = locationX*20;
-			yPoints[0] = locationY*20;
-			yPoints[1] = locationY*20;
-			yPoints[2] = (locationY+1)*20;
-		}
-		else {
-			xPoints[0] = 0;
-			xPoints[1] = 0;
-			xPoints[2] = 0;
-			yPoints[0] = 0;
-			yPoints[1] = 0;
-			yPoints[2] = 0;
-		}
+		g.drawString("11", 80, 80);
+		demos[0]= new Polygon();
+		demos[0].addPoint(100, 100);
+		demos[0].addPoint(100, 200);
+		demos[0].addPoint(200, 200);
+		
+		g.fillPolygon(demos[0]);
+		
+		g.drawString("12", 230, 80);
+		demos[1]= new Polygon();
+		demos[1].addPoint(250, 100);
+		demos[1].addPoint(350, 100);
+		demos[1].addPoint(350, 200);
+		g.fillPolygon(demos[1]);
+		
+		g.drawString("13", 80, 230);
+		demos[2]= new Polygon();
+		demos[2].addPoint(100, 350);
+		demos[2].addPoint(100, 250);
+		demos[2].addPoint(200, 250);
+		g.fillPolygon(demos[2]);
+		
+		g.drawString("14", 230, 230);
+		demos[3]= new Polygon();
+		demos[3].addPoint(250, 350);
+		demos[3].addPoint(350, 250);
+		demos[3].addPoint(350, 350);
+		g.fillPolygon(demos[3]);
 	}
-
 }
