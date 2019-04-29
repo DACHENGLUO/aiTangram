@@ -6,8 +6,10 @@ public class Do {
 	private int[][][] states  = new int[8][4][4];
 	private int Yshift[] = new int[7];
 	private int Xshift[] = new int[7];
+	private int putType[] = new int[7];
 	private int[][] currentTarget = data1.target2;
 	private Tangrams[] tangrams = new Tangrams[7];
+	private int totalCount =0;
 
 	
 	private int statesCount=0;
@@ -31,8 +33,11 @@ public class Do {
 				statesCount++;
 			}
 			else {
+				Xshift[statesCount] = -1;
+				Yshift[statesCount] = 0;
+				putType[statesCount] = 0;
 				statesCount--;
-				if(statesCount>0) {
+				if(statesCount>=0) {
 					
 					//take away a tangram(back to before state)
 				}
@@ -41,80 +46,25 @@ public class Do {
 					break;
 				}
 			}
+			totalCount++;
 			printGraphics();
 		}
+		printLocationAndOrentation();
 	}
 	private boolean putATangram() {
-		boolean putsuccess =false;
-		
-		label1:
-			for(int i =Yshift[statesCount];i<=states[statesCount].length-tangrams[statesCount].rotateContent0.length;i++) {
-				for(int j =Xshift[statesCount]+1;j<=states[statesCount][0].length-tangrams[statesCount].rotateContent0[0].length;j++) {
-					if(match(states[statesCount],tangrams[statesCount].rotateContent0,j,i)) {
-						Yshift[statesCount]=i;
-						Xshift[statesCount]=j;
-						adder(tangrams[statesCount].rotateContent0);
-						
-						putsuccess = true;
-						break label1;
-					}
-					
-				}
+		boolean putSuccess =false;
+		while(putType[statesCount]<4){
+			if(putOneOrentation()) {
+				putSuccess = true;
+				break;
 			}
-		
-		if(putsuccess ==false) {
-			label2:
-				for(int i =Yshift[statesCount];i<=states[statesCount].length-tangrams[statesCount].rotateContent1.length;i++) {
-					for(int j =Xshift[statesCount]+1;j<=states[statesCount][0].length-tangrams[statesCount].rotateContent1[0].length;j++) {
-						if(match(states[statesCount],tangrams[statesCount].rotateContent1,j,i)) {
-							Yshift[statesCount]=i;
-							Xshift[statesCount]=j;
-							adder(tangrams[statesCount].rotateContent1);
-							
-							
-							putsuccess = true;
-							break label2;
-						}
-						
-					}
-				}
-		}
-		
-		if(putsuccess ==false) {
-		label3:
-			for(int i =Yshift[statesCount];i<=states[statesCount].length-tangrams[statesCount].rotateContent2.length;i++) {
-				for(int j =Xshift[statesCount]+1;j<=states[statesCount][0].length-tangrams[statesCount].rotateContent2[0].length;j++) {
-					if(match(states[statesCount],tangrams[statesCount].rotateContent2,j,i)) {
-						Yshift[statesCount]=i;
-						Xshift[statesCount]=j;
-						adder(tangrams[statesCount].rotateContent2);
-						
-						
-						putsuccess = true;
-						break label3;
-					}
-					
-				}
+			else {
+				putType[statesCount]++;
+				Xshift[statesCount] = -1;
+				Yshift[statesCount] = 0;
 			}
 		}
-		if(putsuccess == false) {
-			label4:
-				for(int i =Yshift[statesCount];i<=states[statesCount].length-tangrams[statesCount].rotateContent3.length;i++) {
-					for(int j =Xshift[statesCount]+1;j<=states[statesCount][0].length-tangrams[statesCount].rotateContent3[0].length;j++) {
-						if(match(states[statesCount],tangrams[statesCount].rotateContent3,j,i)) {
-							Yshift[statesCount]=i;
-							Xshift[statesCount]=j;
-							adder(tangrams[statesCount].rotateContent3);
-					
-						
-							putsuccess = true;
-							break label4;
-						}
-						
-					}
-				}
-		}
-		return putsuccess;
+		return putSuccess;
 		
 	}
 	
@@ -149,8 +99,18 @@ public class Do {
 		
 	}
 	
+	private void printLocationAndOrentation() {
+		
+		for(int i =0 ;i<7;i++) {
+			System.out.println("\n\ntangram number: "+i+"    location X: " + Xshift[i]+"    location Y: "+Yshift[i]+"    Orentation: "+putType[i]+"\n");
+		}
+	}
 	private void printGraphics() {
 		System.out.println("statesCount: "+statesCount);
+		System.out.println("totalCount: "+totalCount);
+		if(statesCount==0) {
+			System.out.println("------------------------------------------------------------");
+		}
 		for(int i =0;i<states[statesCount].length;i++) {
 			for(int j =0;j<states[statesCount][0].length;j++) {
 				System.out.print(states[statesCount][i][j]+" ");
@@ -172,5 +132,26 @@ public class Do {
 			}
 		}
 		return temp;
+	}
+	private boolean putOneOrentation() {
+		boolean success =false;
+		int orentation = putType[statesCount];
+		int[][] temp = tangrams[statesCount].rotateContent.get(orentation);
+		label1:
+			for(int i =Yshift[statesCount];i<=states[statesCount].length-temp.length;i++) {
+				for(int j =Xshift[statesCount]+1;j<=states[statesCount][0].length-temp[0].length;j++) {
+					if(match(states[statesCount],temp,j,i)) {
+						Yshift[statesCount]=i;
+						Xshift[statesCount]=j;
+						adder(temp);
+						
+						success = true;
+						break label1;
+					}
+					
+				}
+			}
+		
+		return success;
 	}
 }

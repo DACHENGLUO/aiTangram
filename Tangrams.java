@@ -1,22 +1,26 @@
 package tangram;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Tangrams {
 
 	public int locationX;
 	public int locationY;
-	public int[][] rotateContent0;
-	public int[][] rotateContent1;
-	public int[][] rotateContent2;
-	public int[][] rotateContent3;
+	public List<int[][]> rotateContent;
 	public int rotateDegree;
 	public Tangrams(int[][] rotateContent0) {
+		
 		this.locationX = 0;
 		this.locationY = 0;
 		this.rotateDegree = 0;
-		this.rotateContent0 = rotateContent0;
-		this.rotateContent1 = new int[rotateContent0[0].length][rotateContent0.length];
-		this.rotateContent2 = new int[rotateContent0.length][rotateContent0[0].length];
-		this.rotateContent3 = new int[rotateContent0[0].length][rotateContent0.length];
+		rotateContent = new ArrayList<>();
+		
+		int[][] rotateContent1 = new int[rotateContent0[0].length][rotateContent0.length];
+		int[][] rotateContent2 = new int[rotateContent0.length][rotateContent0[0].length];
+		int[][] rotateContent3 = new int[rotateContent0[0].length][rotateContent0.length];
+		
+
 		
 		
 		for(int i =0;i<rotateContent0.length;i++) {
@@ -90,42 +94,12 @@ public class Tangrams {
 			}
 		}
 		
-		
+		rotateContent.add(rotateContent0);
+		rotateContent.add(rotateContent1);
+		rotateContent.add(rotateContent2);
+		rotateContent.add(rotateContent3);
 	}
 	
 	
-	public void prointRotateContent() {
-		for(int i =0;i<rotateContent0.length;i++) {
-			for(int j =0;j<rotateContent0[0].length;j++) {
-				System.out.print(rotateContent0[i][j]+" ");
-			}
-			System.out.print("\n");
-		}
-		System.out.print("\n\n");
-		
-		for(int i =0;i<rotateContent1.length;i++) {
-			for(int j =0;j<rotateContent1[0].length;j++) {
-				System.out.print(rotateContent1[i][j]+" ");
-			}
-			System.out.print("\n");
-		}
-		System.out.print("\n\n");
-		
-		for(int i =0;i<rotateContent2.length;i++) {
-			for(int j =0;j<rotateContent2[0].length;j++) {
-				System.out.print(rotateContent2[i][j]+" ");
-			}
-			System.out.print("\n");
-		}
-		System.out.print("\n\n");
-		
-		for(int i =0;i<rotateContent3.length;i++) {
-			for(int j =0;j<rotateContent3[0].length;j++) {
-				System.out.print(rotateContent3[i][j]+" ");
-			}
-			System.out.print("\n");
-		}
-		System.out.print("\n\n");
-	}
 
 }
