@@ -49,12 +49,12 @@ public class Do {
 			totalCount++;
 			printGraphics();
 		}
-		printLocationAndOrentation();
+		printLocationAndOrientation();
 	}
 	private boolean putATangram() {
 		boolean putSuccess =false;
 		while(putType[statesCount]<4){
-			if(putOneOrentation()) {
+			if(putOneOrientation()) {
 				putSuccess = true;
 				break;
 			}
@@ -99,10 +99,10 @@ public class Do {
 		
 	}
 	
-	private void printLocationAndOrentation() {
+	private void printLocationAndOrientation() {
 		
 		for(int i =0 ;i<7;i++) {
-			System.out.println("\n\ntangram number: "+i+"    location X: " + Xshift[i]+"    location Y: "+Yshift[i]+"    Orentation: "+putType[i]+"\n");
+			System.out.println("\n\ntangram number: "+i+"    location X: " + Xshift[i]+"    location Y: "+Yshift[i]+"    Orientation: "+putType[i]+"\n");
 		}
 	}
 	private void printGraphics() {
@@ -133,10 +133,10 @@ public class Do {
 		}
 		return temp;
 	}
-	private boolean putOneOrentation() {
+	private boolean putOneOrientation() {
 		boolean success =false;
-		int orentation = putType[statesCount];
-		int[][] temp = tangrams[statesCount].rotateContent.get(orentation);
+		int orientation = putType[statesCount];
+		int[][] temp = tangrams[statesCount].rotateContent.get(orientation);
 		label1:
 			for(int i =Yshift[statesCount];i<=states[statesCount].length-temp.length;i++) {
 				for(int j =Xshift[statesCount]+1;j<=states[statesCount][0].length-temp[0].length;j++) {
