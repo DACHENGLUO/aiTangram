@@ -3,11 +3,11 @@ package tangram;
 public class Do {
 
 	private Data data1 = new Data();
-	private int[][][] states  = new int[8][4][4];
+	private int[][][] states;
 	private int Yshift[] = new int[7];
 	private int Xshift[] = new int[7];
 	private int putType[] = new int[7];
-	private int[][] currentTarget = data1.target2;
+	private int[][] currentTarget;
 	private Tangrams[] tangrams = new Tangrams[7];
 	private int totalCount =0;
 
@@ -21,24 +21,28 @@ public class Do {
 		tangrams[4] = new Tangrams(data1.ST);
 		tangrams[5] = new Tangrams(data1.SQ);
 		tangrams[6] = new Tangrams(data1.PA);
-		for(int i=0;i<Xshift.length;i++) {
-			Xshift[i] = -1;
-		}
+		
 	}
-	
-	public void DFS() {
+	public void DFSAllGraphices(int targetNumber) {
+		int tempX = data1.sizeX[targetNumber];
+		int tempY = data1.sizeY[targetNumber];
+		currentTarget = data1.targetList.get(targetNumber);
+		states  = new int[8][tempY][tempX];
+		DFS();
+	}
+	 void DFS() {
 		while(!equal(states[statesCount],currentTarget,4,4)) {//not go to target state
-			if(putATangram()) {          //put a tangram with a new way.
+			if(putATangram()) {          //put a tangram .
 				//put a tangram success.
 				statesCount++;
 			}
 			else {
-				Xshift[statesCount] = -1;
+				Xshift[statesCount] = 0;
 				Yshift[statesCount] = 0;
 				putType[statesCount] = 0;
 				statesCount--;
 				if(statesCount>=0) {
-					
+					Xshift[statesCount] ++; //try a new way.
 					//take away a tangram(back to before state)
 				}
 				else {                  //take fail(no state can back)
@@ -49,18 +53,19 @@ public class Do {
 			totalCount++;
 			printGraphics();
 		}
-		printLocationAndOrientation();
+		setTangramsLocation();
+		printLocationAndOrentation();
 	}
 	private boolean putATangram() {
 		boolean putSuccess =false;
 		while(putType[statesCount]<4){
-			if(putOneOrientation()) {
+			if(putOneOrentation()) {
 				putSuccess = true;
 				break;
 			}
 			else {
 				putType[statesCount]++;
-				Xshift[statesCount] = -1;
+				Xshift[statesCount] = 0;
 				Yshift[statesCount] = 0;
 			}
 		}
@@ -98,11 +103,17 @@ public class Do {
 		}
 		
 	}
-	
-	private void printLocationAndOrientation() {
+	private void setTangramsLocation() {
+		for(int i =0 ;i<7;i++) {
+			tangrams[i].locationX = Xshift[i];
+			tangrams[i].locationY = Yshift[i];
+			tangrams[i].rotateDegree =putType[i];
+		}
+	}
+	private void printLocationAndOrentation() {
 		
 		for(int i =0 ;i<7;i++) {
-			System.out.println("\n\ntangram number: "+i+"    location X: " + Xshift[i]+"    location Y: "+Yshift[i]+"    Orientation: "+putType[i]+"\n");
+			System.out.println("\n\ntangram number: "+i+"    location X: " + Xshift[i]+"    location Y: "+Yshift[i]+"    Orentation: "+putType[i]+"\n");
 		}
 	}
 	private void printGraphics() {
@@ -133,13 +144,13 @@ public class Do {
 		}
 		return temp;
 	}
-	private boolean putOneOrientation() {
+	private boolean putOneOrentation() {
 		boolean success =false;
-		int orientation = putType[statesCount];
-		int[][] temp = tangrams[statesCount].rotateContent.get(orientation);
+		int orentation = putType[statesCount];
+		int[][] temp = tangrams[statesCount].rotateContent.get(orentation);
 		label1:
 			for(int i =Yshift[statesCount];i<=states[statesCount].length-temp.length;i++) {
-				for(int j =Xshift[statesCount]+1;j<=states[statesCount][0].length-temp[0].length;j++) {
+				for(int j =Xshift[statesCount];j<=states[statesCount][0].length-temp[0].length;j++) {
 					if(match(states[statesCount],temp,j,i)) {
 						Yshift[statesCount]=i;
 						Xshift[statesCount]=j;
