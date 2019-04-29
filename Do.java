@@ -37,6 +37,11 @@ public class Do {
 				statesCount++;
 			}
 			else {
+				for(int i=0;i<states[statesCount].length;i++) {
+					for(int j=0;j<states[statesCount][0].length;j++) {
+						states[statesCount][i][j] = 0;
+					}
+				}
 				Xshift[statesCount] = 0;
 				Yshift[statesCount] = 0;
 				putType[statesCount] = 0;
