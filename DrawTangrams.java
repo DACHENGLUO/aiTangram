@@ -4,14 +4,14 @@ public class DrawTangrams {
 
 	public static void main(String[] args) {
 		Do do1 = new Do();
-		do1.DFSAllGraphices(3);
+		do1.DFSAllGraphices(0);
 		
-		JFrame frame = new JFrame("Drawing Tangrams");
+		/*JFrame frame = new JFrame("Drawing Tangrams");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Tangram tangrams = new Tangram();
 		frame.add(tangrams);
 		frame.setSize(400,600);
-		frame.setVisible(true);
+		frame.setVisible(true);*/
 	}
 	
 }

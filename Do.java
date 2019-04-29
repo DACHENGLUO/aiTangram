@@ -10,6 +10,8 @@ public class Do {
 	private int[][] currentTarget;
 	private Tangrams[] tangrams = new Tangrams[7];
 	private int totalCount =0;
+	private int sizeX;
+	private int sizeY;
 
 	
 	private int statesCount=0;
@@ -17,28 +19,29 @@ public class Do {
 		tangrams[0] = new Tangrams(data1.LT);
 		tangrams[1] = new Tangrams(data1.LT);
 		tangrams[2] = new Tangrams(data1.MT);
-		tangrams[3] = new Tangrams(data1.ST);
-		tangrams[4] = new Tangrams(data1.ST);
-		tangrams[5] = new Tangrams(data1.SQ);
-		tangrams[6] = new Tangrams(data1.PA);
+		
+		tangrams[3] = new Tangrams(data1.SQ);
+		tangrams[4] = new Tangrams(data1.PA);
+		tangrams[5] = new Tangrams(data1.ST);
+		tangrams[6] = new Tangrams(data1.ST);
 		
 		tangrams[0].shape = 1;
 		tangrams[1].shape = 1;
 		tangrams[2].shape = 2;
-		tangrams[3].shape = 3;
-		tangrams[4].shape = 3;
-		tangrams[5].shape = 4;
-		tangrams[6].shape = 5;
+		tangrams[3].shape = 4;
+		tangrams[4].shape = 5;
+		tangrams[5].shape = 3;
+		tangrams[6].shape = 3;
 	}
 	public void DFSAllGraphices(int targetNumber) {
-		int tempX = data1.sizeX[targetNumber];
-		int tempY = data1.sizeY[targetNumber];
+		sizeX = data1.sizeX[targetNumber];
+		sizeY = data1.sizeY[targetNumber];
 		currentTarget = data1.targetList.get(targetNumber);
-		states  = new int[8][tempY][tempX];
+		states  = new int[8][sizeY][sizeX];
 		DFS();
 	}
 	 void DFS() {
-		while(!equal(states[statesCount],currentTarget,4,4)) {//not go to target state
+		while(!equal(states[statesCount],currentTarget,sizeX,sizeY)) {//not go to target state
 			if(putATangram()) {          //put a tangram .
 				//put a tangram success.
 				statesCount++;
@@ -131,7 +134,7 @@ public class Do {
 	private void printGraphics() {
 		System.out.println("statesCount: "+statesCount);
 		System.out.println("totalCount: "+totalCount);
-		if(statesCount==0) {
+		if(statesCount==5) {
 			System.out.println("------------------------------------------------------------");
 		}
 		for(int i =0;i<states[statesCount].length;i++) {
