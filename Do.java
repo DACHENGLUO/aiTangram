@@ -8,7 +8,7 @@ public class Do {
 	private int Xshift[] = new int[7];
 	private int putType[] = new int[7];
 	private int[][] currentTarget;
-	private Tangrams[] tangrams = new Tangrams[7];
+	public Tangrams[] tangrams = new Tangrams[7];
 	private int totalCount =0;
 	private int sizeX;
 	private int sizeY;
@@ -74,6 +74,10 @@ public class Do {
 		}
 		setTangramsLocation();
 		printLocationAndOrentation();
+		for(int i=0;i<7;i++) {
+			tangrams[i].setXY();
+		}
+	
 	}
 	private boolean putATangram() {
 		boolean putSuccess =false;
@@ -161,9 +165,6 @@ public class Do {
 	private void printGraphics() {
 		System.out.println("statesCount: "+statesCount);
 		System.out.println("totalCount: "+totalCount);
-		if(Xshift[0]==0&&Yshift[0]==4) {
-			System.out.println("------------------------------------------------------------");
-		}
 		for(int i =0;i<states[statesCount].length;i++) {
 			for(int j =0;j<states[statesCount][0].length;j++) {
 				System.out.print(states[statesCount][i][j]+" ");
