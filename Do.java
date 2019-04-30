@@ -33,6 +33,8 @@ public class Do {
 		tangrams[5].shape = 3;
 		tangrams[6].shape = 3;
 	}
+	
+	
 	public void DFSAllGraphices(int targetNumber) {
 		sizeX = data1.sizeX[targetNumber];
 		sizeY = data1.sizeY[targetNumber];
@@ -40,6 +42,8 @@ public class Do {
 		states  = new int[8][sizeY][sizeX];
 		DFS();
 	}
+	
+	
 	 void DFS() {
 		while(!equal(states[statesCount],currentTarget,sizeX,sizeY)) {//not go to target state
 			if(putATangram()) {          //put a tangram .
@@ -57,7 +61,7 @@ public class Do {
 				putType[statesCount] = 0;
 				statesCount--;
 				if(statesCount>=0) {
-					Xshift[statesCount] ++; //try a new way.
+					Xshift[statesCount]++;
 					//take away a tangram(back to before state)
 				}
 				else {                  //take fail(no state can back)
@@ -87,6 +91,29 @@ public class Do {
 		return putSuccess;
 		
 	}
+	private boolean putOneOrentation() {
+		boolean success =false;
+		int orentation = putType[statesCount];
+		int[][] temp = tangrams[statesCount].rotateContent.get(orentation);
+		label1:
+			for(int i =Yshift[statesCount];i<=states[statesCount].length-temp.length;i++) {
+				for(int j =0;j<=states[statesCount][0].length-temp[0].length;j++) {
+					if(i>Yshift[statesCount]||j>=Xshift[statesCount]) {
+						if(match(states[statesCount],temp,j,i)) {
+							Yshift[statesCount]=i;
+							Xshift[statesCount]=j;
+							adder(temp);
+							success = true;
+							break label1;
+						}
+					}
+					
+				}
+			}
+		
+		return success;
+	}
+	
 	
 	private boolean match(int[][] currentState,int[][] pieces,int x,int y) {
 		int tempPixel ;
@@ -134,7 +161,7 @@ public class Do {
 	private void printGraphics() {
 		System.out.println("statesCount: "+statesCount);
 		System.out.println("totalCount: "+totalCount);
-		if(statesCount==5) {
+		if(Xshift[0]==0&&Yshift[0]==4) {
 			System.out.println("------------------------------------------------------------");
 		}
 		for(int i =0;i<states[statesCount].length;i++) {
@@ -159,25 +186,5 @@ public class Do {
 		}
 		return temp;
 	}
-	private boolean putOneOrentation() {
-		boolean success =false;
-		int orentation = putType[statesCount];
-		int[][] temp = tangrams[statesCount].rotateContent.get(orentation);
-		label1:
-			for(int i =Yshift[statesCount];i<=states[statesCount].length-temp.length;i++) {
-				for(int j =Xshift[statesCount];j<=states[statesCount][0].length-temp[0].length;j++) {
-					if(match(states[statesCount],temp,j,i)) {
-						Yshift[statesCount]=i;
-						Xshift[statesCount]=j;
-						adder(temp);
-						
-						success = true;
-						break label1;
-					}
-					
-				}
-			}
-		
-		return success;
-	}
+	
 }

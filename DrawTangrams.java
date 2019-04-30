@@ -4,7 +4,7 @@ public class DrawTangrams {
 
 	public static void main(String[] args) {
 		Do do1 = new Do();
-		do1.DFSAllGraphices(0);
+		do1.DFSAllGraphices(3);
 		
 		/*JFrame frame = new JFrame("Drawing Tangrams");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
