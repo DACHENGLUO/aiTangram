@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Tangrams {
 
+	
 	public List<Integer> pointX = new ArrayList<>();
 	public List<Integer> pointY = new ArrayList<>();
 	public int shape; 
@@ -137,131 +138,130 @@ public class Tangrams {
 			pointY.add(locationY*50 + 250);
 		}
 		else if(shape == 2&&rotateDegree == 0) {
-	        	pointX.add(locationX*50 + 150);
-	        	pointX.add(locationX*50 + 50);
-	        	pointX.add(locationX*50 + 150);
-	        	pointY.add(locationY*50 + 50);
-	        	pointY.add(locationY*50 + 150);
-	        	pointY.add(locationY*50 + 150);
+	        pointX.add(locationX*50 + 150);
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 150);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 150);
+	        pointY.add(locationY*50 + 150);
 		}
 		else if(shape == 2&&rotateDegree == 1) {
-	        	pointX.add(locationX*50 + 50);
-	        	pointX.add(locationX*50 + 50);
-	        	pointX.add(locationX*50 + 150);
-	        	pointY.add(locationY*50 + 50);
-	        	pointY.add(locationY*50 + 150);
-	        	pointY.add(locationY*50 + 150);
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 150);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 150);
+	        pointY.add(locationY*50 + 150);
 		}
 		else if(shape == 2&&rotateDegree == 2) {
-	       		pointX.add(locationX*50 + 50);
-	        	pointX.add(locationX*50 + 150);
-	        	pointX.add(locationX*50 + 50);
-	        	pointY.add(locationY*50 + 50);
-	        	pointY.add(locationY*50 + 50);
-	        	pointY.add(locationY*50 + 150);
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 150);
+	        pointX.add(locationX*50 + 50);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 150);
 		}
 		else if(shape == 2&&rotateDegree == 3) {
-	        	pointX.add(locationX*50 + 50);
-	       		pointX.add(locationX*50 + 150);
-	        	pointX.add(locationX*50 + 150);
-	        	pointY.add(locationY*50 + 50);
-	        	pointY.add(locationY*50 + 50);
-	        	pointY.add(locationY*50 + 150);
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 150);
+	        pointX.add(locationX*50 + 150);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 150);
 		}
 		else if(shape == 3&&rotateDegree == 0) {
-	        	pointX.add(locationX*50 + 150);
-	        	pointX.add(locationX*50 + 50);
-	       		pointX.add(locationX*50 + 150);
-	        	pointY.add(locationY*50 + 50);
-	        	pointY.add(locationY*50 + 150);
-	        	pointY.add(locationY*50 + 150);
+	        pointX.add(locationX*50 + 150);
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 150);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 150);
+	        pointY.add(locationY*50 + 150);
 		}
 		else if(shape == 3&&rotateDegree == 0) {
-	        	pointX.add(locationX*50 + 50);
-	        	pointX.add(locationX*50 + 100);
-	        	pointX.add(locationX*50 + 150);
-	        	pointY.add(locationY*50 + 100);
-	        	pointY.add(locationY*50 + 50);
-	        	pointY.add(locationY*50 + 100);
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 100);
+	        pointX.add(locationX*50 + 150);
+	        pointY.add(locationY*50 + 100);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 100);
 		}
 		else if(shape == 3&&rotateDegree == 1) {
-	        	pointX.add(locationX*50 + 50);
-	        	pointX.add(locationX*50 + 100);
-	        	pointX.add(locationX*50 + 50);
-	        	pointY.add(locationY*50 + 50);
-	       		pointY.add(locationY*50 + 100);
-	        	pointY.add(locationY*50 + 150);
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 100);
+	        pointX.add(locationX*50 + 50);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 100);
+	        pointY.add(locationY*50 + 150);
 		}
 		else if(shape == 3&&rotateDegree == 2) {
-	        	pointX.add(locationX*50 + 50);
-	        	pointX.add(locationX*50 + 100);
-	       	 	pointX.add(locationX*50 + 150);
-	        	pointY.add(locationY*50 + 50);
-	        	pointY.add(locationY*50 + 100);
-	        	pointY.add(locationY*50 + 50);
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 100);
+	        pointX.add(locationX*50 + 150);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 100);
+	        pointY.add(locationY*50 + 50);
 		}
 		else if(shape == 3&&rotateDegree == 3) {
-	        	pointX.add(locationX*50 + 50);
-	        	pointX.add(locationX*50 + 100);
-	        	pointX.add(locationX*50 + 100);
-	        	pointY.add(locationY*50 + 100);
-	        	pointY.add(locationY*50 + 50);
-	        	pointY.add(locationY*50 + 150);
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 100);
+	        pointX.add(locationX*50 + 100);
+	        pointY.add(locationY*50 + 100);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 150);
 		}
 		else if(shape == 4&&rotateDegree == 0) {
-	        	pointX.add(locationX*50 + 100);
-	        	pointX.add(locationX*50 + 50);
-	        	pointX.add(locationX*50 + 150);
-	        	pointX.add(locationX*50 + 100);
-	        	pointY.add(locationY*50 + 50);
-	        	pointY.add(locationY*50 + 100);
-	        	pointY.add(locationY*50 + 100);
-	        	pointY.add(locationY*50 + 150);
+	        pointX.add(locationX*50 + 100);
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 100);
+	        pointX.add(locationX*50 + 150);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 100);
+	        pointY.add(locationY*50 + 150);
+	        pointY.add(locationY*50 + 100);
 		}
 		else if(shape == 5&&rotateDegree == 0) {
-	        	pointX.add(locationX*50 + 50);
-	        	pointX.add(locationX*50 + 100);
-	        	pointX.add(locationX*50 + 150);
-	        	pointX.add(locationX*50 + 200);
-	        	pointY.add(locationY*50 + 100);
-	        	pointY.add(locationY*50 + 50);
-	        	pointY.add(locationY*50 + 100);
-	        	pointY.add(locationY*50 + 50);
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 100);
+	        pointX.add(locationX*50 + 200);
+	        pointX.add(locationX*50 + 150);
+	        pointY.add(locationY*50 + 100);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 100);
 		}
 		else if(shape == 5&&rotateDegree == 1) {
-	        	pointX.add(locationX*50 + 50);
-	        	pointX.add(locationX*50 + 100);
-	       		pointX.add(locationX*50 + 50);
-	        	pointX.add(locationX*50 + 100);
-	        	pointY.add(locationY*50 + 50);
-	        	pointY.add(locationY*50 + 100);
-	        	pointY.add(locationY*50 + 150);
-	        	pointY.add(locationY*50 + 200);
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 100);
+	        pointX.add(locationX*50 + 100);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 150);
+	        pointY.add(locationY*50 + 200);
+	        pointY.add(locationY*50 + 100);
 		}
 		else if(shape == 5&&rotateDegree == 2) {
-	        	pointX.add(locationX*50 + 50);
-	        	pointX.add(locationX*50 + 100);
-	        	pointX.add(locationX*50 + 150);
-	        	pointX.add(locationX*50 + 200);
-	        	pointY.add(locationY*50 + 50);
-	        	pointY.add(locationY*50 + 100);
-	        	pointY.add(locationY*50 + 50);
-	        	pointY.add(locationY*50 + 100);
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 150);
+	        pointX.add(locationX*50 + 200);
+	        pointX.add(locationX*50 + 100);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 100);
+	        pointY.add(locationY*50 + 100);
 		}
 		else if(shape == 5&&rotateDegree == 3) {
-	        	pointX.add(locationX*50 + 100);
-	        	pointX.add(locationX*50 + 50);
-	        	pointX.add(locationX*50 + 100);
-	        	pointX.add(locationX*50 + 50);
-	        	pointY.add(locationY*50 + 50);
-	        	pointY.add(locationY*50 + 100);
-	        	pointY.add(locationY*50 + 150);
-	        	pointY.add(locationY*50 + 200);
+	        pointX.add(locationX*50 + 100);
+	        pointX.add(locationX*50 + 100);
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 50);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 150);
+	        pointY.add(locationY*50 + 200);
+	        pointY.add(locationY*50 + 100);
 		}
 		else {
 			//error
 		}
 	}
-	
 
 }
