@@ -26,23 +26,24 @@ public class TangramFigures extends JPanel{
 		g.setColor(Color.RED);
 		g.fillPolygon(polygonFigures[0]);
 		
-		g.setColor(Color.PINK);
+		g.setColor(Color.MAGENTA);
 		g.fillPolygon(polygonFigures[1]);
 		
 		g.setColor(Color.GREEN);
 		g.fillPolygon(polygonFigures[2]);
 		
-		g.setColor(Color.BLUE);
+		g.setColor(Color.GRAY);
 		g.fillPolygon(polygonFigures[3]);
 		
 		
-		g.setColor(Color.CYAN);
+		g.setColor(Color.YELLOW);
 		g.fillPolygon(polygonFigures[4]);
 		
-		g.setColor(Color.GRAY);
+		g.setColor(Color.BLUE);
 		g.fillPolygon(polygonFigures[5]);
 		
-		g.setColor(Color.YELLOW);
+		
+		g.setColor(Color.CYAN);
 		g.fillPolygon(polygonFigures[6]);
 		
 	}
