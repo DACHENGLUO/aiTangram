@@ -231,26 +231,6 @@ public class Tangrams {
 	        pointY.add(locationY*50 + 200);
 	        pointY.add(locationY*50 + 100);
 		}
-		else if(shape == 5&&rotateDegree == 2) {
-	        pointX.add(locationX*50 + 50);
-	        pointX.add(locationX*50 + 150);
-	        pointX.add(locationX*50 + 200);
-	        pointX.add(locationX*50 + 100);
-	        pointY.add(locationY*50 + 50);
-	        pointY.add(locationY*50 + 50);
-	        pointY.add(locationY*50 + 100);
-	        pointY.add(locationY*50 + 100);
-		}
-		else if(shape == 5&&rotateDegree == 3) {
-	        pointX.add(locationX*50 + 100);
-	        pointX.add(locationX*50 + 100);
-	        pointX.add(locationX*50 + 50);
-	        pointX.add(locationX*50 + 50);
-	        pointY.add(locationY*50 + 50);
-	        pointY.add(locationY*50 + 150);
-	        pointY.add(locationY*50 + 200);
-	        pointY.add(locationY*50 + 100);
-		}
 		else {
 			//error
 		}
