@@ -1,20 +1,31 @@
 package tangram;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Do {
 
 	private Data data1 = new Data();
-	private int[][][] states;
+	
+	private List<int[][]> states;
+	private int[][] currentTarget;
+	
+	private int statesSizeX;
+	private int statesSizeY;
+	private int totalStatesCount =0;                 // states data
+	
+	
+	
+	public Tangrams[] tangrams = new Tangrams[7];
+	
 	private int Yshift[] = new int[7];
 	private int Xshift[] = new int[7];
 	private int putType[] = new int[7];
-	private int[][] currentTarget;
-	public Tangrams[] tangrams = new Tangrams[7];
-	private int totalCount =0;
-	private int sizeX;
-	private int sizeY;
-
+	private int tangramsCount=0;                    // tangrams data
 	
-	private int statesCount=0;
+	TangramFigures tangramsFigures ;
+	
 	public Do() {
 		tangrams[0] = new Tangrams(data1.LT);
 		tangrams[1] = new Tangrams(data1.LT);
@@ -32,44 +43,122 @@ public class Do {
 		tangrams[4].shape = 5;
 		tangrams[5].shape = 3;
 		tangrams[6].shape = 3;
+		states  = new ArrayList<>();
 	}
 	
-	
-	public void DFSAllGraphices(int targetNumber) {
-		sizeX = data1.sizeX[targetNumber];
-		sizeY = data1.sizeY[targetNumber];
+	public void DFSFindingAllWays(int targetNumber) {
+		
+	}
+	public void DFS(int targetNumber, boolean multiply) {
+		statesSizeX = data1.sizeX[targetNumber];
+		statesSizeY = data1.sizeY[targetNumber];
 		currentTarget = data1.targetList.get(targetNumber);
-		states  = new int[8][sizeY][sizeX];
-		DFS();
+		states.add(new int[statesSizeY][statesSizeX]);
+		tangramsFigures = new TangramFigures();
+		if(multiply) {
+			DFSForAllfigures();
+		}
+		else {
+			DFSForOnefigure();
+		}
 	}
 	
-	
-	 void DFS() {
-		while(!equal(states[statesCount],currentTarget,sizeX,sizeY)) {//not go to target state
+	private void DFSForAllfigures() {
+		 
+		
+		while(totalStatesCount<500) {//not go to target state
+			
 			if(putATangram()) {          //put a tangram .
 				//put a tangram success.
-				statesCount++;
+				tangramsCount++;
+				
 			}
 			else {
-				for(int i=0;i<states[statesCount].length;i++) {
-					for(int j=0;j<states[statesCount][0].length;j++) {
-						states[statesCount][i][j] = 0;
-					}
-				}
-				Xshift[statesCount] = 0;
-				Yshift[statesCount] = 0;
-				putType[statesCount] = 0;
-				statesCount--;
-				if(statesCount>=0) {
-					Xshift[statesCount]++;
+				states.remove(tangramsCount);
+				Xshift[tangramsCount] = 0;
+				Yshift[tangramsCount] = 0;
+				putType[tangramsCount] = 0;
+				tangramsCount--;
+				if(tangramsCount>=0) {
+					Xshift[tangramsCount]++;
 					//take away a tangram(back to before state)
 				}
 				else {                  //take fail(no state can back)
-					System.out.println("sorry,can not get this graphic!");
+					System.out.println("sorry,can not get more graphic!");
 					break;
 				}
 			}
-			totalCount++;
+			if(equal(states.get(tangramsCount),currentTarget)) {
+				totalStatesCount++;
+				printGraphics();
+				if(totalStatesCount == 71) {
+					System.out.println(tangramsCount);
+					for(int i =0;i<statesSizeY;i++) {
+						for(int j =0;j<statesSizeX;j++) {
+							System.out.print(states.get(7)[i][j]+" ");
+						}
+						System.out.println();
+					}
+				}
+				setTangramsLocation();
+				printLocationAndOrentation();
+				for(int i=0;i<7;i++) {
+					tangrams[i].setXY();
+				}
+				tangramsFigures.setTangrams(tangrams);
+				
+				states.remove(tangramsCount);
+				tangramsCount--;
+				
+				states.remove(tangramsCount);
+				Xshift[tangramsCount] = 0;
+				Yshift[tangramsCount] = 0;
+				putType[tangramsCount] = 0;
+				tangramsCount--;
+
+				
+				if(tangramsCount>=0) {
+					Xshift[tangramsCount]++;
+					//take away a tangram(back to before state)
+				}
+				else {                  //take fail(no state can back)
+					System.out.println("sorry,can not get more graphic!");
+					break;
+				}
+			}
+			else {
+				totalStatesCount++;
+				printGraphics();
+			}
+		}
+	
+	}
+	
+	
+	
+	 private void DFSForOnefigure() {
+		while(!equal(states.get(tangramsCount),currentTarget)) {//not go to target state
+			
+			if(putATangram()) {          //put a tangram .
+				//put a tangram success.
+				tangramsCount++;
+			}
+			else {
+				states.remove(tangramsCount);
+				Xshift[tangramsCount] = 0;
+				Yshift[tangramsCount] = 0;
+				putType[tangramsCount] = 0;
+				tangramsCount--;
+				if(tangramsCount>=0) {
+					Xshift[tangramsCount]++;
+					//take away a tangram(back to before state)
+				}
+				else {                  //take fail(no state can back)
+					System.out.println("sorry,can not get more graphic!");
+					break;
+				}
+			}
+			totalStatesCount++;
 			printGraphics();
 		}
 		setTangramsLocation();
@@ -77,36 +166,43 @@ public class Do {
 		for(int i=0;i<7;i++) {
 			tangrams[i].setXY();
 		}
+		tangramsFigures.setTangrams(tangrams);
 	
 	}
+	 
+	 
+	 
 	private boolean putATangram() {
 		boolean putSuccess =false;
-		while(putType[statesCount]<4){
+		while(putType[tangramsCount]<4){
 			if(putOneOrentation()) {
 				putSuccess = true;
 				break;
 			}
 			else {
-				putType[statesCount]++;
-				Xshift[statesCount] = 0;
-				Yshift[statesCount] = 0;
+				putType[tangramsCount]++;
+				Xshift[tangramsCount] = 0;
+				Yshift[tangramsCount] = 0;
 			}
 		}
 		return putSuccess;
 		
 	}
+	
 	private boolean putOneOrentation() {
 		boolean success =false;
-		int orentation = putType[statesCount];
-		int[][] temp = tangrams[statesCount].rotateContent.get(orentation);
+		int orentation = putType[tangramsCount];
+		int[][] tempTangram = tangrams[tangramsCount].rotateContent.get(orentation);
+		int tangramSizeY = tangrams[tangramsCount].rotateContent.get(orentation).length;
+		int tangramSizeX = tangrams[tangramsCount].rotateContent.get(orentation)[0].length;
 		label1:
-			for(int i =Yshift[statesCount];i<=states[statesCount].length-temp.length;i++) {
-				for(int j =0;j<=states[statesCount][0].length-temp[0].length;j++) {
-					if(i>Yshift[statesCount]||j>=Xshift[statesCount]) {
-						if(match(states[statesCount],temp,j,i)) {
-							Yshift[statesCount]=i;
-							Xshift[statesCount]=j;
-							adder(temp);
+			for(int i =Yshift[tangramsCount];i<=statesSizeY-tangramSizeY;i++) {
+				for(int j =0;j<=statesSizeY-tangramSizeX;j++) {
+					if(i>Yshift[tangramsCount]||j>=Xshift[tangramsCount]) {
+						if(match(states.get(tangramsCount),tempTangram,j,i)) {
+							Yshift[tangramsCount]=i;
+							Xshift[tangramsCount]=j;
+							adder(tempTangram);
 							success = true;
 							break label1;
 						}
@@ -137,17 +233,18 @@ public class Do {
 		return false;
 	}
 	private void adder(int[][] pieces) {
-		for(int i=0;i<states[statesCount].length;i++) {
-			for(int j=0;j<states[statesCount][0].length;j++) {
-				states[statesCount+1][i][j] = states[statesCount][i][j];
+		int[][] tempState = new int[statesSizeY][statesSizeX];
+		for(int i=0;i<statesSizeY;i++) {
+			for(int j=0;j<statesSizeX;j++) {
+				tempState[i][j] = states.get(tangramsCount)[i][j];
 			}
 		}
 		for(int i =0;i<pieces.length;i++) {
 			for(int j =0;j<pieces[0].length;j++) {
-				states[statesCount+1][i+Yshift[statesCount]][j+Xshift[statesCount]] += pieces[i][j];
+				tempState[i+Yshift[tangramsCount]][j+Xshift[tangramsCount]] += pieces[i][j];
 			}
 		}
-		
+		states.add(tempState);
 	}
 	private void setTangramsLocation() {
 		for(int i =0 ;i<7;i++) {
@@ -159,26 +256,26 @@ public class Do {
 	private void printLocationAndOrentation() {
 		
 		for(int i =0 ;i<7;i++) {
-			System.out.println("\n\ntangram number: "+i+"    location X: " + Xshift[i]+"    location Y: "+Yshift[i]+"    Orentation: "+putType[i]+"\n");
+			System.out.println("\n\ntangram number: "+i+"    location X: " + tangrams[i].locationX+"    location Y: "+tangrams[i].locationY+"    Orentation: "+tangrams[i].rotateDegree+"\n");
 		}
 	}
 	private void printGraphics() {
-		System.out.println("statesCount: "+statesCount);
-		System.out.println("totalCount: "+totalCount);
-		for(int i =0;i<states[statesCount].length;i++) {
-			for(int j =0;j<states[statesCount][0].length;j++) {
-				System.out.print(states[statesCount][i][j]+" ");
+		System.out.println("tangramsCount: "+tangramsCount);
+		System.out.println("totalCount: "+totalStatesCount);
+		for(int i =0;i<statesSizeY;i++) {
+			for(int j =0;j<statesSizeX;j++) {
+				System.out.print(states.get(tangramsCount)[i][j]+" ");
 			}
 			System.out.println();
 		}
 		System.out.println();
 		System.out.println();
 	}
-	private boolean equal(int[][] a,int[][] b,int x,int y) {
+	private boolean equal(int[][] a,int[][] b) {
 		boolean temp = true;
 		label1:
-		for(int i = 0;i<y;i++) {
-			for(int j=0;j<x;j++) {
+		for(int i = 0;i<statesSizeY;i++) {
+			for(int j=0;j<statesSizeX;j++) {
 				if(a[i][j] != b[i][j]) {
 					temp = false;
 					break label1;

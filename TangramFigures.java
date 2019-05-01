@@ -1,50 +1,64 @@
 package tangram;
+
 import java.awt.*;
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TangramFigures extends JPanel{
-	private Polygon[] polygonFigures = new Polygon[7];
-	
-	public TangramFigures(Tangrams[] tangrams) {
-		super();
+	private List<Polygon> polygonFigures = new ArrayList<>();
+	private int GroupCount =0;
+	public void setTangrams(Tangrams[] tangrams) {
+		
 		for(int i =0;i<7;i++) {
-			polygonFigures[i]= new Polygon();
+			Polygon tempPolygon= new Polygon();
 			int pointCount = tangrams[i].pointX.size();
 			for(int j =0;j<pointCount;j++) {
 				
-				polygonFigures[i].addPoint(tangrams[i].pointX.get(j), tangrams[i].pointY.get(j));
+				tempPolygon.addPoint(tangrams[i].pointX.get(j)+GroupCount*200, tangrams[i].pointY.get(j));
 			}
-			
+			polygonFigures.add(tempPolygon);
 		}
+		GroupCount++;
 		
 	}
 
 	public void paintComponent(Graphics g) {
+		
 		super.paintComponent(g);
-		
-		
 		g.setColor(Color.RED);
-		g.fillPolygon(polygonFigures[0]);
+		for(int i=0;i<GroupCount;i++) {
+			g.fillPolygon(polygonFigures.get(0+7*i));
+		}
+			g.setColor(Color.MAGENTA);
+			for(int i=0;i<GroupCount;i++) {
+				g.fillPolygon(polygonFigures.get(1+7*i));
+			}
+			
+			g.setColor(Color.GREEN);
+			for(int i=0;i<GroupCount;i++) {
+				g.fillPolygon(polygonFigures.get(2+7*i));
+			}
+			g.setColor(Color.GRAY);
+			for(int i=0;i<GroupCount;i++) {
+				g.fillPolygon(polygonFigures.get(3+7*i));
+			}
+			
+			g.setColor(Color.YELLOW);
+			for(int i=0;i<GroupCount;i++) {
+				g.fillPolygon(polygonFigures.get(4+7*i));
+			}
+			g.setColor(Color.BLUE);
+			for(int i=0;i<GroupCount;i++) {
+				g.fillPolygon(polygonFigures.get(5+7*i));
+			}
+			
+			g.setColor(Color.CYAN);
+			for(int i=0;i<GroupCount;i++) {
+				g.fillPolygon(polygonFigures.get(6+7*i));
+			}
 		
-		g.setColor(Color.MAGENTA);
-		g.fillPolygon(polygonFigures[1]);
 		
-		g.setColor(Color.GREEN);
-		g.fillPolygon(polygonFigures[2]);
-		
-		g.setColor(Color.GRAY);
-		g.fillPolygon(polygonFigures[3]);
-		
-		
-		g.setColor(Color.YELLOW);
-		g.fillPolygon(polygonFigures[4]);
-		
-		g.setColor(Color.BLUE);
-		g.fillPolygon(polygonFigures[5]);
-		
-		
-		g.setColor(Color.CYAN);
-		g.fillPolygon(polygonFigures[6]);
 		
 	}
 }
