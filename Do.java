@@ -91,17 +91,13 @@ public class Do {
 			if(equal(states.get(tangramsCount),currentTarget)) {
 				totalStatesCount++;
 				printGraphics();
-				if(totalStatesCount == 71) {
-					System.out.println(tangramsCount);
-					for(int i =0;i<statesSizeY;i++) {
-						for(int j =0;j<statesSizeX;j++) {
-							System.out.print(states.get(7)[i][j]+" ");
-						}
-						System.out.println();
-					}
-				}
+				
 				setTangramsLocation();
 				printLocationAndOrentation();
+				for(int i=0;i<7;i++) {
+					tangrams[i].pointX.clear();
+					tangrams[i].pointY.clear();
+				}
 				for(int i=0;i<7;i++) {
 					tangrams[i].setXY();
 				}
