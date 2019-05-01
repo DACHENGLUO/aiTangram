@@ -15,7 +15,7 @@ public class TangramFigures extends JPanel{
 			int pointCount = tangrams[i].pointX.size();
 			for(int j =0;j<pointCount;j++) {
 				
-				tempPolygon.addPoint(tangrams[i].pointX.get(j)+GroupCount*200, tangrams[i].pointY.get(j));
+				tempPolygon.addPoint(tangrams[i].pointX.get(j)+GroupCount*220, tangrams[i].pointY.get(j));
 			}
 			polygonFigures.add(tempPolygon);
 		}

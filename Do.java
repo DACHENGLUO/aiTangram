@@ -170,7 +170,14 @@ public class Do {
 	 
 	private boolean putATangram() {
 		boolean putSuccess =false;
-		while(putType[tangramsCount]<4){
+		int tempRotate = 4;
+		if(tangrams[tangramsCount].shape ==4) {
+			tempRotate = 1;
+		}
+		else if(tangrams[tangramsCount].shape ==5) {
+			tempRotate = 2;
+		}
+		while(putType[tangramsCount]<tempRotate){
 			if(putOneOrentation()) {
 				putSuccess = true;
 				break;

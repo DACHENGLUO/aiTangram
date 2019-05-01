@@ -13,7 +13,7 @@ public class Tangrams {
 	public List<int[][]> rotateContent;
 	public int rotateDegree;
 	public Tangrams(int[][] rotateContent0) {
-		
+		this.shape=1;
 		this.locationX = 0;
 		this.locationY = 0;
 		this.rotateDegree = 0;
@@ -226,6 +226,26 @@ public class Tangrams {
 	        pointX.add(locationX*50 + 50);
 	        pointX.add(locationX*50 + 100);
 	        pointX.add(locationX*50 + 100);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 150);
+	        pointY.add(locationY*50 + 200);
+	        pointY.add(locationY*50 + 100);
+		}
+		else if(shape == 5&&rotateDegree == 2) {
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 150);
+	        pointX.add(locationX*50 + 200);
+	        pointX.add(locationX*50 + 100);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 50);
+	        pointY.add(locationY*50 + 100);
+	        pointY.add(locationY*50 + 100);
+		}
+		else if(shape == 5&&rotateDegree == 3) {
+	        pointX.add(locationX*50 + 100);
+	        pointX.add(locationX*50 + 100);
+	        pointX.add(locationX*50 + 50);
+	        pointX.add(locationX*50 + 50);
 	        pointY.add(locationY*50 + 50);
 	        pointY.add(locationY*50 + 150);
 	        pointY.add(locationY*50 + 200);
